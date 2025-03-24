@@ -27,7 +27,7 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
-
+    
 
     print ("Starting Asteroids!")
     print (f"Screen width: {SCREEN_WIDTH}")
@@ -45,6 +45,11 @@ def main():
         for asteroid in asteroids:
             if asteroid.collision(player):
                 sys.exit("Game over!")
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.kill()
+                    shot.kill()
+
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         
